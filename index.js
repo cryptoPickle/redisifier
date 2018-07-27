@@ -32,9 +32,15 @@ class SimpleRedis {
   _createClient() {
     const client = redis.createClient(this._port, this._host, this._options);
     if (this._password) {
-      client.auth(this._password, () => console.log("Redis => Authenticated"));
+      client.auth(this._password, () => {
+        console.log('/:::::::::::::::::::::::::::::::::::::::Redis/Authenticated')
+        console.log('/::::::::::::::::::::::::::::::::::::::::::::::::::::::::::')
+      });
     }
-    client.on("connect", () => console.log("Redis => Connected"));
+    client.on("connect", () => {
+      console.log('/:::::::::::::::::::::::::::::::::::::::::::Redis/Connected')
+      console.log('/::::::::::::::::::::::::::::::::::::::::::::::::::::::::::')
+    });
     return client;
   }
   setKeyValue(key, value, cb) {
