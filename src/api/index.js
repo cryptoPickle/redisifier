@@ -22,72 +22,88 @@ const defaultoptions = {
 };
 
 class SimpleRedis {
-  constructor(cb ,port, host, password , options ) {
+  constructor({port, host, password, options = defaultoptions}, cb ) {
     this._port = port;
     this._host = host;
     this._options = options;
     this._password = password;
-    this._callback = cb;
+    this._callback = null || cb;
     this._client = this._createClient();
   }
   _createClient() {
     const client = redis.createClient(this._port, this._host, this._options);
     if (this._password) {
-      client.auth(this._password, () => {
-        this._callback('Redis/Authenticated')
-      });
+      client.auth(this._password);
     }
     client.on("connect", () => {
-      this._callback('Redis/Connected')
+      if(this._callback){
+        return this._callback('Redis/Connected');
+      }
     });
     return client;
   }
   setKeyValue(key, value, cb) {
     return this._client.set([key, value], (err, reply) => {
-      if (err) throw new Error(err);
-      return cb(reply);
+      if(cb) {
+        if (err) return cb(new Error(err));
+        return cb(null, reply);
+      }
     });
   }
   getKeyValue(key, cb) {
     return this._client.get(key, (err, reply) => {
-      if (err) throw new Error(err);
-      return cb(reply);
+      if(cb) {
+        if (err) return (new Error(err));
+        return cb(null, reply);
+      }
     });
   }
   setHash(key, json, cb) {
     return this._client.hmset(key, json, (err, reply) => {
-      if (err) throw new Error(err);
-      return cb(reply);
+      if(cb) {
+        if (err) return cb(new Error(err));
+        return cb(null, reply);
+      }
     });
   }
   getHash(key, cb) {
     return this._client.hgetall(key, (err, reply) => {
-      if (err) throw new Error(err);
-      return cb(reply);
+      if(cb) {
+        if (err) return cb(new Error(err));
+        return cb(null, reply);
+      }
     });
   }
   setList(key, array, cb) {
     return this._client.rpush(key, array, (err, reply) => {
-      if (err) throw new Error(err);
-      return cb(reply);
+      if(cb) {
+        if (err) return cb(new Error(err));
+        return cb(null, reply);
+      }
     });
   }
   getList(key, cb, index = -1) {
     return this._client.lrange(key, 0, index, (err, reply) => {
-      if (err) throw new Error(err);
-      return cb(reply);
+      if(cb) {
+        if (err) return cb(new Error(err));
+        return cb(null,reply);
+      }
     });
   }
   createSet(key, array, cb) {
     return this._client.sadd(key, array, (err, reply) => {
-      if (err) throw new Error(err);
-      return cb(reply);
+      if(cb) {
+        if (err) return cb(new Error(err));
+        return cb(null, reply);
+      }
     });
   }
   getSet(key, cb) {
     this._client.smembers(key, (err, reply) => {
-      if (err) throw new Error(err);
-      return cb(reply);
+      if(cb) {
+        if (err) return  cb(new Error(err));
+        return cb(null, reply);
+      }
     });
   }
   isExists(key, cb) {
@@ -101,8 +117,10 @@ class SimpleRedis {
   }
   deleteKey(key, cb) {
     return this._client.del(key, (err, reply) => {
-      if (err) throw new Error(err);
-      return cb(reply);
+      if(cb) {
+        if (err) throw new Error(err);
+        return cb(reply);
+      }
     });
   }
   setExpireTime(key, second, cb) {
@@ -112,5 +130,9 @@ class SimpleRedis {
     });
   }
 }
-
-export default (port = null, host = null, password = null, options = defaultoptions) => new SimpleRedis(port,host, password, options);
+export default (options = {
+  port:  null,
+  host:  null,
+  password:  null,
+  options: defaultoptions
+}, cb) => new SimpleRedis(options, cb);
