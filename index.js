@@ -108,4 +108,4 @@ class SimpleRedis {
   }
 }
 
-export default new SimpleRedis();
+export default (port = null, host = null, password = null, options = options) => new SimpleRedis(port,host, password,options);
