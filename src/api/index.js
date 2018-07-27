@@ -1,6 +1,6 @@
 const redis = require("redis");
 
-const options = {
+const defaultoptions = {
   retry_strategy: function(options) {
     if (options.error && options.error.code === "ECONNREFUSED") {
       //end reconnecting on specific error and flush all commands with individual
@@ -22,26 +22,23 @@ const options = {
 };
 
 class SimpleRedis {
-  constructor(port = null, host = null, password = null, options = options) {
+  constructor(cb ,port, host, password , options ) {
     this._port = port;
     this._host = host;
     this._options = options;
     this._password = password;
+    this._callback = cb;
     this._client = this._createClient();
   }
   _createClient() {
     const client = redis.createClient(this._port, this._host, this._options);
     if (this._password) {
       client.auth(this._password, () => {
-        console.log('/::::::::::::::::::::::::::::::::::::::::::::::::::::::::::/')
-        console.log('/:::::::::::::::: Redis/Authenticated :::::::::::::::::::::/')
-        console.log('/::::::::::::::::::::::::::::::::::::::::::::::::::::::::::/')
+        this._callback('Redis/Authenticated')
       });
     }
     client.on("connect", () => {
-      console.log('/::::::::::::::::::::::::::::::::::::::::::::::::::::::::::/')
-      console.log('/:::::::::::::::::: Redis/Connected :::::::::::::::::::::::/')
-      console.log('/::::::::::::::::::::::::::::::::::::::::::::::::::::::::::/')
+      this._callback('Redis/Connected')
     });
     return client;
   }
@@ -116,4 +113,4 @@ class SimpleRedis {
   }
 }
 
-export default (port = null, host = null, password = null, options = options) => new SimpleRedis(port,host, password,options);
+export default (port = null, host = null, password = null, options = defaultoptions) => new SimpleRedis(port,host, password, options);

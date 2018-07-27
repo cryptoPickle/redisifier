@@ -1,6 +1,6 @@
 {
   "name": "SimpleRedis",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "facade pattern for redis",
   "main": "index.js",
   "repository": "https://github.com/Cagacaga/SimpleRedis.git",
@@ -8,6 +8,18 @@
   "license": "MIT",
   "private": null,
   "dependencies": {
+    "dotenv": "^6.0.0",
+    "jest": "^23.4.1",
     "redis": "^2.8.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2"
   }
 }
