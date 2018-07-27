@@ -1,1 +1,1 @@
-{"version":3,"sources":["../src/index.js"],"names":["simpleRedis","default"],"mappings":"AAAA,OAAOA,WAAP,MAAwB,OAAxB;;AAEA,SACEA,eAAeC,OADjB","file":"index.js","sourcesContent":["import simpleRedis from './api';\n\nexport {\n  simpleRedis as default\n}"]}
+{"version":3,"sources":["../src/index.js"],"names":["simpleRedis","require","module","exports"],"mappings":";;AAAA,IAAMA,cAAeC,QAAQ,aAAR,CAArB;;AAEAC,OAAOC,OAAP,GAAiBH,WAAjB","file":"index.js","sourcesContent":["const simpleRedis =  require('./api/index');\n\nmodule.exports = simpleRedis;"]}

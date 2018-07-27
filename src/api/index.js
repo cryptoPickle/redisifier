@@ -130,7 +130,7 @@ class SimpleRedis {
     });
   }
 }
-export default (options = {
+module.exports =  (options = {
   port:  null,
   host:  null,
   password:  null,

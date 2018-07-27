@@ -3,8 +3,8 @@
 ## Connection
 
 ```
-import SimpleRedis from './SimpleRedis'
-const client = SimpleRedis(port, host, password, {...options})
+import redisifier from 'redisifier'
+const client = redisifier({port, host, password, options}, [callback])
 ```
 Without port and host entry client will try to connect localhost.
 

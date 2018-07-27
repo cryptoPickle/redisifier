@@ -1,12 +1,11 @@
 {
-  "name": "SimpleRedis",
-  "version": "0.1.0",
+  "name": "redisifier",
+  "version": "0.1.5",
   "description": "facade pattern for redis",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "repository": "https://github.com/Cagacaga/SimpleRedis.git",
   "author": "Halil Irmak",
   "license": "MIT",
-  "private": null,
   "dependencies": {
     "dotenv": "^6.0.0",
     "jest": "^23.4.1",
@@ -21,10 +20,14 @@
     "testURL": "http://localhost/",
     "collectCoverage": true,
     "coverageDirectory": "/coverage/",
-    "coverageReporters": ["json", "html"]
+    "coverageReporters": [
+      "json",
+      "html"
+    ]
   },
   "devDependencies": {
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-preset-es2015": "^6.24.1",
     "coveralls": "^3.0.2"
   }
 }

@@ -1,4 +1,6 @@
-import simpleRedis from './api';
+'use strict';
 
-export { simpleRedis as default };
+var simpleRedis = require('./api/index');
+
+module.exports = simpleRedis;
 //# sourceMappingURL=index.js.map

@@ -1,5 +1,3 @@
-import simpleRedis from './api';
+const simpleRedis =  require('./api/index');
 
-export {
-  simpleRedis as default
-}
+module.exports = simpleRedis;
