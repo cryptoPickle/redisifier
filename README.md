@@ -43,3 +43,5 @@ Without port and host entry client will try to connect localhost.
 
 ### setExpireTime(key, second, [callback])
     Sets to a key expire time. Returns number of keys which expired time setted.
+
+ `This project depends on great library node-redis`

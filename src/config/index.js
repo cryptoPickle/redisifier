@@ -8,4 +8,4 @@ const config = {
   password: process.env.REDISPASSWORD
 }
 
-export default config;
+module.exports = config;

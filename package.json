@@ -1,9 +1,9 @@
 {
   "name": "redisifier",
-  "version": "0.1.5",
+  "version": "0.1.8",
   "description": "facade pattern for redis",
   "main": "./dist/index.js",
-  "repository": "https://github.com/Cagacaga/SimpleRedis.git",
+  "repository": "https://github.com/cryptoPickle/redisifier",
   "author": "Halil Irmak",
   "license": "MIT",
   "dependencies": {

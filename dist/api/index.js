@@ -180,7 +180,7 @@ var SimpleRedis = function () {
   return SimpleRedis;
 }();
 
-exports.default = function () {
+module.exports = function () {
   var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
     port: null,
     host: null,
