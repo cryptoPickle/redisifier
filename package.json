@@ -1,0 +1,13 @@
+{
+  "name": "SimpleRedis",
+  "version": "0.0.1",
+  "description": "facade pattern for redis",
+  "main": "index.js",
+  "repository": "https://github.com/Cagacaga/SimpleRedis.git",
+  "author": "Halil Irmak",
+  "license": "MIT",
+  "private": null,
+  "dependencies": {
+    "redis": "^2.8.0"
+  }
+}
