@@ -13,13 +13,18 @@
     "redis": "^2.8.0"
   },
   "scripts": {
-    "test": "jest --detectOpenHandles"
+    "test": "jest --detectOpenHandles --coverage",
+    "build": "NODE_ENV=production babel src -s -D -d dist"
   },
   "jest": {
     "verbose": true,
-    "testURL": "http://localhost/"
+    "testURL": "http://localhost/",
+    "collectCoverage": true,
+    "coverageDirectory": "/coverage/",
+    "coverageReporters": ["json", "html"]
   },
   "devDependencies": {
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2"
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "coveralls": "^3.0.2"
   }
 }
