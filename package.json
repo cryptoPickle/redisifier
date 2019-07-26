@@ -7,7 +7,7 @@
   "author": "Halil Irmak",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^6.0.0",
+    "dotenv": "^8.0.0",
     "jest": "^23.4.1",
     "redis": "^2.8.0"
   },
